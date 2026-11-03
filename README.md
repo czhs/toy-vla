@@ -190,3 +190,7 @@ figures/       one script per figure
 scripts/       checkpoint download
 tests/         short runs of the experiment scripts
 ```
+
+## Licence
+
+The code in this repository is under the [Apache License 2.0](LICENSE). The policies build on `lerobot/smolvla_base` and SmolVLM2, under their own licences. `arm/setup_external.sh` fetches aviadarn/so101-lerobot, which is not part of this repository and has no licence file.
