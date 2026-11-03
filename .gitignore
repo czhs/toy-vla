@@ -1,0 +1,6 @@
+data/
+figures/out/
+numbers/recomputed.json
+__pycache__/
+*.pyc
+.DS_Store
