@@ -1,0 +1,94 @@
+{
+ "_doc": "Training-scene defaults for the SO-101 red-cube task (so101scene.py reads this file). Colours are 0-255 RGB. Lengths in metres, angles in degrees. Every entry is also a SceneSpec field, so it can be varied as a perturbation.",
+ "task": "Pick up the red cube and place it in the tray.",
+ "sim_hz": 50,
+ "record_every": 5,
+ "table": "plain",
+ "table_rgb": [
+  214,
+  202,
+  178
+ ],
+ "cube_rgb": [
+  220,
+  30,
+  30
+ ],
+ "cube_mm": 25.0,
+ "cube_yaw_deg": 0.0,
+ "cube_yaw_random": false,
+ "arm_rgb": [
+  60,
+  60,
+  60
+ ],
+ "tray_kind": "square",
+ "tray_xy": [
+  0.22,
+  0.0
+ ],
+ "tray_half": 0.045,
+ "tray_rgb": [
+  194,
+  182,
+  158
+ ],
+ "goal_thresh": 0.04,
+ "ws_rho": [
+  0.14,
+  0.31
+ ],
+ "ws_bearing_deg": [
+  -60.0,
+  60.0
+ ],
+ "ws_tray_clear": 0.07,
+ "random_start": true,
+ "start_box_rad": {
+  "shoulder_pan": [
+   -1.4,
+   1.4
+  ],
+  "shoulder_lift": [
+   -1.75,
+   0.2
+  ],
+  "elbow_flex": [
+   -0.5,
+   1.69
+  ],
+  "wrist_flex": [
+   -1.0,
+   1.65
+  ],
+  "wrist_roll": [
+   -1.5,
+   1.5
+  ],
+  "gripper": [
+   -0.17,
+   0.5
+  ]
+ },
+ "start_tcp_z": [
+  0.09,
+  0.3
+ ],
+ "start_tcp_rho": [
+  0.08,
+  0.32
+ ],
+ "camera_pos": [
+  0.13,
+  0.0,
+  1.111
+ ],
+ "camera_fovy": 30.0,
+ "ov_w": 512,
+ "ov_h": 512,
+ "wr_w": 320,
+ "wr_h": 240,
+ "lighting": "flat",
+ "flat_ambient": 0.8,
+ "flat_diffuse": 0.2
+}

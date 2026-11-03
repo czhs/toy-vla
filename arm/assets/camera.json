@@ -1,0 +1,114 @@
+{
+ "_doc": "Single policy camera for the SO-101 red-cube task (elevation 45, azimuth -90, field of view 30), 512 x 512. scene.load_camera reads the key camera; scores are the selection metrics of the candidate and of the top-down view.",
+ "camera": {
+  "name": "el45_az-90_f30",
+  "pos": [
+   0.14742,
+   -0.71165,
+   0.7008
+  ],
+  "quat": [
+   0.92388,
+   0.382683,
+   0.0,
+   0.0
+  ],
+  "fovy": 30.0,
+  "lookat": [
+   0.14742,
+   -0.03085,
+   0.02
+  ],
+  "elevation_deg": 45.0,
+  "azimuth_deg": -90.0,
+  "distance_m": 0.9628,
+  "width": 512,
+  "height": 512,
+  "azimuth_convention": "around world z from +x; 0 = opposite the robot base looking back at it, +90 = robot's +y side, 180 = behind the base"
+ },
+ "scores": {
+  "name": "el45_az-90_f30",
+  "el": 45.0,
+  "az": -90.0,
+  "fovy": 30.0,
+  "dist": 0.9628,
+  "lookat": [
+   0.14742,
+   -0.03085,
+   0.02
+  ],
+  "pos": [
+   0.14742,
+   -0.71165,
+   0.7008
+  ],
+  "quat": [
+   0.92388,
+   0.382683,
+   0.0,
+   0.0
+  ],
+  "vis_min_grasp_med": 693.5,
+  "vis_min_grasp_p10": 458.9,
+  "vis_min_grasp_min": 335.0,
+  "frac_min_grasp_med": 0.8738558038346583,
+  "frac_min_grasp_min": 0.546644844517185,
+  "frac_mean_grasp": 0.9114398728542128,
+  "vis_min_all_med": 691.5,
+  "occl50_frames_frac": 0.007746478873239437,
+  "eps_zero_vis_grasp": 0,
+  "size_bw_med": 26.0,
+  "size_bh_med": 32.5,
+  "size_sqrt_med": 28.751165535373488,
+  "size_sqrt_min": 24.166091947189145,
+  "size_sqrt_max": 34.52535300326414,
+  "dz_px_med": 14.226564328766383,
+  "dv_px_med": 14.213642447722293,
+  "ws_margin": 15.998375205386822,
+  "arm_cut_frac": 0.2693055820826825,
+  "tcp_in_frac": 0.9795521938812379
+ },
+ "baseline_scores": {
+  "name": "topdown_train",
+  "el": 90.0,
+  "az": 0.0,
+  "fovy": 30.0,
+  "dist": 1.111,
+  "lookat": [
+   0.13,
+   0.0,
+   0.0
+  ],
+  "pos": [
+   0.13,
+   0.0,
+   1.111
+  ],
+  "quat": [
+   0.707107,
+   0.0,
+   0.0,
+   -0.707107
+  ],
+  "vis_min_grasp_med": 0.0,
+  "vis_min_grasp_p10": 0.0,
+  "vis_min_grasp_min": 0.0,
+  "frac_min_grasp_med": 0.0,
+  "frac_min_grasp_min": 0.0,
+  "frac_mean_grasp": 0.00194777778280497,
+  "vis_min_all_med": 0.0,
+  "occl50_frames_frac": 0.8507042253521127,
+  "eps_zero_vis_grasp": 38,
+  "size_bw_med": 24.0,
+  "size_bh_med": 22.5,
+  "size_sqrt_med": 23.398715474246124,
+  "size_sqrt_min": 22.44994432064365,
+  "size_sqrt_max": 24.310491562286437,
+  "dz_px_med": 2.6738189928502685,
+  "dv_px_med": 1.01100083900171,
+  "ws_margin": -20.179274888735563,
+  "arm_cut_frac": 0.05011082689391513,
+  "tcp_in_frac": 0.9905821874204228
+ },
+ "dataset_image_key": "observation.images.overhead (kept for drop-in compatibility; holds this angled camera)"
+}
