@@ -1,6 +1,12 @@
-# A mechanistic account of a fine-tuned SmolVLA: reproduction package
+# Planting Hidden Failures: Towards a Mechanistic Understanding of VLAs — code and outputs
 
-Code and per-scene outputs for "Toward a Mechanistic Understanding of a Fine-Tuned SmolVLA". The paper studies one SmolVLA policy fine-tuned on a toy task (a drawn one-link arm pointing at a red block) and one simulated SO-101 pick-and-place policy. This repository remakes every figure and number from the stored outputs on any machine, and retrains and reruns everything behind those outputs on a GPU.
+**Hongyi Shi** (Chris Shi), Carnegie Mellon University. CoRL 2026 Workshop on the Science of Physical AI Safety (SPAIS).
+
+- Paper (PDF): <https://chrisshi.com/assets/pdf/planting-failures.pdf>
+- Post about the paper, with the demo video: <https://chrisshi.com/planting-failures-blog/>
+- Author: <https://chrisshi.com>
+
+Code and per-scene outputs for "Planting Hidden Failures: Towards a Mechanistic Understanding of VLAs". The paper studies one SmolVLA policy fine-tuned on a toy task (a drawn one-link arm pointing at a red block) and one simulated SO-101 pick-and-place policy, and plants a position-dependent failure in each by editing six query-projection matrices. This repository remakes every figure and number from the stored outputs on any machine, and retrains and reruns everything behind those outputs on a GPU.
 
 There are three ways in, in order of cost:
 
@@ -130,38 +136,39 @@ Retraining in step 3 gives a different policy from the released one, because tor
 | `scene.py`, `assets/scene_defaults.json`, `assets/camera.json`, `assets/eval_layouts.json` | scene, policy camera, frozen condition specs and seed sets |
 | `expert.py`, `make_dataset.py`, `merge_shards.py`, `assets/dataset_episodes.jsonl` | scripted expert and dataset |
 | `fast_core.py`, `build_feature_cache.py`, `train_policy.py` | expert-only fine-tune on cached image features |
-| `policy_tools.py`, `fit_fold.py`, `apply_delta.py` | the fold of Equation (fold), scaled by lambda |
+| `policy_tools.py`, `fit_fold.py`, `apply_delta.py` | the fold of Equation (1), scaled by lambda |
 | `eval_closed_loop.py`, `run_closed_loop.sh`, `reduce_eval_outputs.py` | closed-loop evaluation. An episode succeeds on the first control step where the so101-nexus environment reports the cube released, static, at table height and within 4 cm (xy) of the tray centre, within 12 s; ten actions of each chunk are executed before replanning |
 | `make_figure_map.py` | top-down render and world-to-pixel map for the figure |
 
 ## Paper figures and tables
 
-Numbering follows the 3 November 2026 draft.
+Numbering follows the paper as posted on 5 November 2026 at the link above (two figures and Equation (1) in the body, one figure and ten tables in the appendix).
 
 | in the paper | remade by | data in `results/` | data produced by |
 |---|---|---|---|
 | Figure 1, overview | `figures/make_fig1.py` | `arm/fig1_arm_panel.png` | `figures/make_fig1d_arm_panel.py` (arm panel) |
-| Figure 2, colour switch | `figures/make_fig3.py` | `colour_switch.npz`, `colour_native_green.npz`, `colour_native_blue.npz` | `experiments/colour_switch.py`, `experiments/colour_native_reference.py` |
-| Figure 3a, toy weight fold | `figures/make_fig4a.py` | `weight_fold.npz` | `experiments/weight_fold.py` |
-| Figure 3b, arm weight fold | `figures/make_fig4b.py` | `arm/closed_loop.npz`, `arm/map.json`, `arm/bg.png` | `arm/run_closed_loop.sh`, `arm/reduce_eval_outputs.py`, `arm/make_figure_map.py` |
-| Table 1, direction counts and energy shares | `numbers/recompute_numbers.py` | `gradient_directions.json` | `experiments/gradient_directions.py` |
-| Table 2, keep-only and erase | `numbers/recompute_numbers.py` | `keep_erase.npz` | `experiments/keep_erase.py` |
-| Table 3, even-layer removal | `numbers/recompute_numbers.py` | `even_layer_skip.json` | `experiments/even_layer_skip.py` |
-| Table 4, pointer test | `numbers/recompute_numbers.py` | `pointer_layer_sweep.npz`, `pointer_test.npz` | `experiments/pointer_layer_sweep.py`, `experiments/pointer_test.py` |
-| Table 5, one-square distractor | `numbers/recompute_numbers.py` | `distractor_one_square.npz` | `experiments/distractor_one_square.py` |
-| Table 6, fixed angle in the query input | `numbers/recompute_numbers.py` | `query_replacement.npz` | `experiments/query_replacement.py` |
-| Table 7, toy weight fold | `numbers/recompute_numbers.py` | `weight_fold.npz` | `experiments/weight_fold.py` |
-| Table 8, arm | `numbers/recompute_numbers.py` | `arm/closed_loop.npz` | `arm/run_closed_loop.sh`, `arm/reduce_eval_outputs.py` |
+| Figure 2a, toy weight fold | `figures/make_fig4a.py` | `weight_fold.npz` | `experiments/weight_fold.py` |
+| Figure 2b, arm weight fold | `figures/make_fig4b.py` | `arm/closed_loop.npz`, `arm/map.json`, `arm/bg.png` | `arm/run_closed_loop.sh`, `arm/reduce_eval_outputs.py`, `arm/make_figure_map.py` |
+| Figure 3, retargeting edit (appendix) | `figures/make_fig3.py` | `colour_switch.npz`, `colour_native_green.npz`, `colour_native_blue.npz` | `experiments/colour_switch.py`, `experiments/colour_native_reference.py` |
+| Table 1, keep-only and erase | `numbers/recompute_numbers.py` | `keep_erase.npz` | `experiments/keep_erase.py` |
+| Table 2, even-layer removal | `numbers/recompute_numbers.py` | `even_layer_skip.json` | `experiments/even_layer_skip.py` |
+| Table 3, pointer test by layer and strength | `numbers/recompute_numbers.py` | `pointer_layer_sweep.npz` | `experiments/pointer_layer_sweep.py` |
+| Table 4, pointer test at layer 7, 4,000 scenes | `numbers/recompute_numbers.py` | `pointer_test.npz` | `experiments/pointer_test.py` |
+| Table 5, one-square distractor and the retargeting edit's cost | `numbers/recompute_numbers.py` | `distractor_one_square.npz`, `colour_switch.npz` | `experiments/distractor_one_square.py`, `experiments/colour_switch.py` |
+| Table 6, fit of the estimate by layer | `numbers/recompute_numbers.py` | `estimate_fit.json` | `experiments/query_replacement.py` |
+| Table 7, fixed angle in the query input | `numbers/recompute_numbers.py` | `query_replacement.npz` | `experiments/query_replacement.py` |
+| Table 8, heads gated by the written estimate | `numbers/recompute_numbers.py` | `head_gating.npz` | `experiments/estimate_gate_scan.py`, `experiments/head_gating.py` |
+| Table 9, toy weight fold | `numbers/recompute_numbers.py` | `weight_fold.npz` | `experiments/weight_fold.py` |
+| Table 10, arm closed loop | `numbers/recompute_numbers.py` | `arm/closed_loop.npz` | `arm/run_closed_loop.sh`, `arm/reduce_eval_outputs.py` |
 
-`figures/make_fig2.py` draws the pointer test as a figure; the paper reports the same data in Table 4 instead. The script names keep the order in which the figures were first made.
+`figures/make_fig2.py` draws the pointer test as a figure; the paper reports the same data in Tables 3 and 4 instead. The script names keep the order in which the figures were first made (`make_fig3` is the paper's Figure 3, `make_fig4a`/`make_fig4b` its Figure 2).
 
 Numbers in the running text that no table holds:
 
-| number | data in `results/` | produced by |
-|---|---|---|
-| share of the stream gradient inside the pulled-back directions | `stream_gradient_overlap.json` | `experiments/stream_gradients.py`, `experiments/stream_gradient_overlap.py` |
-| variance fraction and line fit of the estimate | `estimate_fit.json` | `experiments/query_replacement.py` |
-| head counts (gated, open, reversed) | `head_gating.npz` | `experiments/estimate_gate_scan.py`, `experiments/head_gating.py` |
+| number | where in the paper | data in `results/` | produced by |
+|---|---|---|---|
+| direction counts and energy shares (67 directions over the eight odd layers) | Section 3.1, Appendix A | `gradient_directions.json` | `experiments/gradient_directions.py` |
+| share of the stream gradient inside the pulled-back directions | Appendix A, stream directions | `stream_gradient_overlap.json` | `experiments/stream_gradients.py`, `experiments/stream_gradient_overlap.py` |
 
 ## Not regenerated by this repository
 
@@ -189,6 +196,18 @@ numbers/       recompute_numbers.py and the values printed in the paper
 figures/       one script per figure
 scripts/       checkpoint download
 tests/         short runs of the experiment scripts
+```
+
+## Citation
+
+```bibtex
+@inproceedings{shi2026planting,
+  title     = {Planting Hidden Failures: Towards a Mechanistic Understanding of {VLAs}},
+  author    = {Shi, Hongyi},
+  booktitle = {CoRL 2026 Workshop on the Science of Physical AI Safety},
+  year      = {2026},
+  url       = {https://chrisshi.com/planting-failures-blog/}
+}
 ```
 
 ## Licence

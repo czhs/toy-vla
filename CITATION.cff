@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this code or these outputs, please cite the paper."
+title: "Planting Hidden Failures: Towards a Mechanistic Understanding of VLAs (code and outputs)"
+authors:
+  - family-names: Shi
+    given-names: Hongyi
+    affiliation: Carnegie Mellon University
+repository-code: "https://github.com/czhs/toy-vla"
+url: "https://chrisshi.com/planting-failures-blog/"
+license: Apache-2.0
+preferred-citation:
+  type: conference-paper
+  title: "Planting Hidden Failures: Towards a Mechanistic Understanding of VLAs"
+  authors:
+    - family-names: Shi
+      given-names: Hongyi
+      affiliation: Carnegie Mellon University
+  collection-title: "CoRL 2026 Workshop on the Science of Physical AI Safety"
+  year: 2026
+  url: "https://chrisshi.com/assets/pdf/planting-failures.pdf"
